@@ -10,7 +10,6 @@ class Account extends CI_Controller {
 
     public function index()
     {
-        $this->load->helper('form');
         $query = $this->account_model->apply_list()->result_array ();
         $data = array ( // 存入列陣
             'data' => $query
@@ -39,7 +38,6 @@ class Account extends CI_Controller {
             'account' => 'required|alpha_numeric|max_len,12|min_len,6',
             'Country' => 'required|max_len,15|min_len,6'
         ));
-
         if($validated === true) {
             $result = $this->account_model->apply_account($_POST);
             if ($result) {
@@ -52,9 +50,6 @@ class Account extends CI_Controller {
             echo json_encode(['status'=>'failed']);
         } 
     }
-    function testAJAX(){
-        echo "Message :".$_POST['Message'];
-	}
     public function insertpage()
     {
         $this->load->view('account/apply');       
